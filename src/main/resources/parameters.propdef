@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><parameters><parameter>
+      <key/>
+      <name>B2C Confirmation URL</name>
+      <type>xsd:string</type>
+      <isRequired>false</isRequired>
+      <constraint/>
+      <description/>
+      <additionalMetadata/>
+   </parameter><parameter>
+      <key/>
+      <name>Leading System Available</name>
+      <type>xsd:string</type>
+      <isRequired>false</isRequired>
+      <constraint/>
+      <description/>
+      <additionalMetadata/>
+   </parameter><parameter>
+      <key/>
+      <name>iflow Address</name>
+      <type>xsd:string</type>
+      <isRequired>false</isRequired>
+      <constraint/>
+      <description/>
+      <additionalMetadata/>
+   </parameter><parameter>
+      <key/>
+      <name>Leading Business System Id</name>
+      <type>xsd:string</type>
+      <isRequired>false</isRequired>
+      <constraint/>
+      <description/>
+      <additionalMetadata/>
+   </parameter><parameter>
+      <key/>
+      <name>Credential Name</name>
+      <type>xsd:string</type>
+      <isRequired>false</isRequired>
+      <constraint/>
+      <description/>
+      <additionalMetadata/>
+   </parameter><parameter>
+      <key/>
+      <name>Authentication Type</name>
+      <type>xsd:string</type>
+      <isRequired>false</isRequired>
+      <constraint/>
+      <description/>
+      <additionalMetadata>
+         <isCombobox>true</isCombobox>
+      </additionalMetadata>
+   </parameter><parameter>
+      <key/>
+      <name>Persistence Hook</name>
+      <type>xsd:string</type>
+      <isRequired>false</isRequired>
+      <constraint/>
+      <description/>
+      <additionalMetadata/>
+   </parameter><parameter>
+      <key/>
+      <name>enableLogging</name>
+      <type>xsd:string</type>
+      <isRequired>false</isRequired>
+      <constraint/>
+      <description/>
+      <additionalMetadata/>
+   </parameter><parameter>
+      <key/>
+      <name>Proxy Type</name>
+      <type>xsd:string</type>
+      <isRequired>false</isRequired>
+      <constraint/>
+      <description/>
+      <additionalMetadata>
+         <isCombobox>true</isCombobox>
+      </additionalMetadata>
+   </parameter><parameter>
+      <key/>
+      <name>Cloud Connector Location ID</name>
+      <type>xsd:string</type>
+      <isRequired>false</isRequired>
+      <constraint/>
+      <description/>
+      <additionalMetadata/>
+   </parameter><param_references><reference attribute_category="SAP_Commerce_Cloud" attribute_id="ctype::AdapterVariant/cname::HCIOData/tp::HTTP/mp::OData V2/direction::Receiver/version::1.8.0/attrId::scc_location_id" attribute_uilabel="Location ID" param_key="Cloud Connector Location ID"/><reference attribute_category="SAP_Commerce_Cloud.Receiver.System" attribute_id="ctype::AdapterVariant/cname::HCIOData/tp::HTTP/mp::OData V2/direction::Receiver/version::1.8.0/attrId::address" attribute_uilabel="Address" param_key="B2C Confirmation URL"/><reference attribute_category="SAP_Commerce_Cloud.Receiver.Auth" attribute_id="ctype::AdapterVariant/cname::HCIOData/tp::HTTP/mp::OData V2/direction::Receiver/version::1.8.0/attrId::authenticationMethod" attribute_uilabel="Authentication" param_key="Authentication Type"/><reference attribute_category="SAP_Commerce_Cloud" attribute_id="ctype::AdapterVariant/cname::HCIOData/tp::HTTP/mp::OData V2/direction::Receiver/version::1.8.0/attrId::proxyType" attribute_uilabel="Proxy Type" param_key="Proxy Type"/><reference attribute_category="SAP_Commerce_Cloud.Receiver.Auth" attribute_id="ctype::AdapterVariant/cname::HCIOData/tp::HTTP/mp::OData V2/direction::Receiver/version::1.8.0/attrId::alias" attribute_uilabel="Credential Name" param_key="Credential Name"/><reference attribute_category="SCP_Master_Data_For_Business_Partners.Receiver.System" attribute_id="ctype::AdapterVariant/cname::SOAP/tp::HTTP/mp::Plain SOAP/direction::Receiver/version::1.3.5/attrId::address" attribute_uilabel="Address" param_key="iflow Address"/></param_references></parameters>

@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://sap.com/xi/SAPGlobal20/Global" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://sap.com/xi/SAP_BS_FND/MDG/Global2" targetNamespace="http://sap.com/xi/SAP_BS_FND/MDG/Global2">
+    <wsdl:types>
+        <xs:schema xmlns="http://sap.com/xi/SAPGlobal20/Global" xmlns:ccts="urn:un:unece:uncefact:documentation:standard:CoreComponentsTechnicalSpecification:3.0" xmlns:tns="http://sap.com/xi/SAPGlobal20/Global" xmlns:xi0="http://sap.com/xi/SAPGlobal20/Global" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://sap.com/xi/SAPGlobal20/Global">
+            <xs:element name="KeyMappingBulkReplicateRequest" type="KeyMappingBulkReplicateRequestMessage"/>
+            <xs:simpleType name="ActionCode">
+                <xs:annotation>
+                    <xs:documentation xml:lang="EN">
+				
+			</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:token">
+                    <xs:enumeration value="01"/>
+                    <xs:enumeration value="02"/>
+                    <xs:enumeration value="03"/>
+                    <xs:enumeration value="04"/>
+                    <xs:enumeration value="05"/>
+                    <xs:enumeration value="06"/>
+                    <xs:length value="2"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="AgencyIdentificationCode">
+                <xs:annotation>
+                    <xs:documentation xml:lang="EN">
+				
+			</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:token">
+                    <xs:maxLength value="3"/>
+                    <xs:minLength value="1"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="BusinessDocumentMessageHeader">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="ID" type="BusinessDocumentMessageID"/>
+                    <xs:element minOccurs="0" name="UUID" type="UUID"/>
+                    <xs:element minOccurs="0" name="ReferenceID" type="BusinessDocumentMessageID"/>
+                    <xs:element minOccurs="0" name="ReferenceUUID" type="UUID"/>
+                    <xs:element name="CreationDateTime" type="GLOBAL_DateTime"/>
+                    <xs:element minOccurs="0" name="TestDataIndicator" type="Indicator"/>
+                    <xs:element minOccurs="0" name="ReconciliationIndicator" type="Indicator"/>
+                    <xs:element minOccurs="0" name="SenderBusinessSystemID" type="BusinessSystemID"/>
+                    <xs:element minOccurs="0" name="RecipientBusinessSystemID" type="BusinessSystemID"/>
+                    <xs:element minOccurs="0" name="SenderParty" type="BusinessDocumentMessageHeaderParty"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="RecipientParty" type="BusinessDocumentMessageHeaderParty"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="BusinessScope" type="BusinessScope"/>
+                </xs:sequence>
+                <xs:attribute name="BusinessDocumentObjectListCompleteTransmissionIndicator" type="OPTIONAL_Indicator"/>
+            </xs:complexType>
+            <xs:complexType name="BusinessDocumentMessageHeaderParty">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="InternalID" type="PartyInternalID"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="StandardID" type="PartyStandardID"/>
+                    <xs:element minOccurs="0" name="ContactPerson" type="BusinessDocumentMessageHeaderPartyContactPerson"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="BusinessDocumentMessageHeaderPartyContactPerson">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="InternalID" type="ContactPersonInternalID"/>
+                    <xs:element maxOccurs="4" minOccurs="0" name="OrganisationFormattedName" type="LANGUAGEINDEPENDENT_MEDIUM_Name"/>
+                    <xs:element maxOccurs="4" minOccurs="0" name="PersonFormattedName" type="LANGUAGEINDEPENDENT_LONG_Name"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="PhoneNumber" type="PhoneNumber"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="FaxNumber" type="PhoneNumber"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="EmailURI" type="EmailURI"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="BusinessDocumentMessageID">
+                <xs:annotation>
+                    <xs:documentation xml:lang="EN">
+				
+			</xs:documentation>
+                </xs:annotation>
+                <xs:simpleContent>
+                    <xs:extension base="BusinessDocumentMessageID.Content">
+                        <xs:attribute name="schemeID">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:token">
+                                    <xs:maxLength value="60"/>
+                                    <xs:minLength value="1"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="schemeAgencyID">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:token">
+                                    <xs:maxLength value="60"/>
+                                    <xs:minLength value="1"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="schemeAgencySchemeAgencyID" type="AgencyIdentificationCode"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:simpleType name="BusinessDocumentMessageID.Content">
+                <xs:restriction base="xs:token">
+                    <xs:maxLength value="35"/>
+                    <xs:minLength value="1"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="BusinessScope">
+                <xs:sequence>
+                    <xs:element name="TypeCode" type="BusinessScopeTypeCode"/>
+                    <xs:element minOccurs="0" name="InstanceID" type="BusinessScopeInstanceID"/>
+                    <xs:element minOccurs="0" name="ID" type="BusinessScopeID"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="BusinessScopeID">
+                <xs:annotation>
+                    <xs:documentation xml:lang="EN">
+				
+			</xs:documentation>
+                </xs:annotation>
+                <xs:simpleContent>
+                    <xs:extension base="BusinessScopeID.Content">
+                        <xs:attribute name="schemeID">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:token">
+                                    <xs:maxLength value="60"/>
+                                    <xs:minLength value="1"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="schemeAgencyID">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:token">
+                                    <xs:maxLength value="60"/>
+                                    <xs:minLength value="1"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:simpleType name="BusinessScopeID.Content">
+                <xs:restriction base="xs:token">
+                    <xs:maxLength value="36"/>
+                    <xs:minLength value="1"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="BusinessScopeInstanceID">
+                <xs:annotation>
+                    <xs:documentation xml:lang="EN">
+				
+			</xs:documentation>
+                </xs:annotation>
+                <xs:simpleContent>
+                    <xs:extension base="BusinessScopeInstanceID.Content">
+                        <xs:attribute name="schemeID">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:token">
+                                    <xs:maxLength value="60"/>
+                                    <xs:minLength value="1"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="schemeAgencyID">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:token">
+                                    <xs:maxLength value="60"/>
+                                    <xs:minLength value="1"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:simpleType name="BusinessScopeInstanceID.Content">
+                <xs:restriction base="xs:token">
+                    <xs:maxLength value="36"/>
+                    <xs:minLength value="1"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="BusinessScopeTypeCode">
+                <xs:annotation>
+                    <xs:documentation xml:lang="EN">
+				
+			</xs:documentation>
+                </xs:annotation>
+                <xs:simpleContent>
+                    <xs:extension base="BusinessScopeTypeCode.Content">
+                        <xs:attribute name="listID">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:token">
+                                    <xs:maxLength value="60"/>
+                                    <xs:minLength value="1"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="listVersionID">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:token">
+                                    <xs:maxLength value="15"/>
+                                    <xs:minLength value="1"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="listAgencyID">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:token">
+                                    <xs:maxLength value="60"/>
+                                    <xs:minLength value="1"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="listAgencySchemeID">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:token">
+                                    <xs:maxLength value="60"/>
+                                    <xs:minLength value="1"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="listAgencySchemeAgencyID" type="AgencyIdentificationCode"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:simpleType name="BusinessScopeTypeCode.Content">
+                <xs:restriction base="xs:token">
+                    <xs:maxLength value="4"/>
+                    <xs:minLength value="1"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="BusinessSystemID">
+                <xs:annotation>
+                    <xs:documentation xml:lang="EN">
+				
+			</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:token">
+                    <xs:maxLength value="60"/>
+                    <xs:minLength value="1"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="Code">
+                <xs:annotation>
+                    <xs:documentation xml:lang="EN">
+				
+			</xs:documentation>
+                </xs:annotation>
+                <xs:simpleContent>
+                    <xs:extension base="xs:token">
+                        <xs:attribute name="listID">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:token">
+                                    <xs:maxLength value="60"/>
+                                    <xs:minLength value="1"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="listVersionID">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:token">
+                                    <xs:maxLength value="15"/>
+                                    <xs:minLength value="1"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="listAgencyID">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:token">
+                                    <xs:maxLength value="60"/>
+                                    <xs:minLength value="1"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="listAgencySchemeID">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:token">
+                                    <xs:maxLength value="60"/>
+                                    <xs:minLength value="1"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="listAgencySchemeAgencyID" type="AgencyIdentificationCode"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:complexType name="ContactPersonInternalID">
+                <xs:annotation>
+                    <xs:documentation xml:lang="EN">
+				
+			</xs:documentation>
+                </xs:annotation>
+                <xs:simpleContent>
+                    <xs:extension base="ContactPersonInternalID.Content">
+                        <xs:attribute name="schemeID">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:token">
+                                    <xs:maxLength value="60"/>
+                                    <xs:minLength value="1"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="schemeAgencyID">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:token">
+                                    <xs:maxLength value="60"/>
+                                    <xs:minLength value="1"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:simpleType name="ContactPersonInternalID.Content">
+                <xs:restriction base="xs:token">
+                    <xs:maxLength value="32"/>
+                    <xs:minLength value="1"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="CounterValue">
+                <xs:annotation>
+                    <xs:documentation xml:lang="EN">
+				
+			</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:int">
+                    <xs:maxInclusive value="999999999"/>
+                    <xs:minInclusive value="0"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="CountryCode">
+                <xs:annotation>
+                    <xs:documentation xml:lang="EN">
+				
+			</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:token">
+                    <xs:maxLength value="3"/>
+                    <xs:minLength value="2"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="CountryDiallingCode">
+                <xs:annotation>
+                    <xs:documentation xml:lang="EN">
+				
+			</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:token">
+                    <xs:maxLength value="10"/>
+                    <xs:minLength value="1"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="DefiningSchemeCode">
+                <xs:annotation>
+                    <xs:documentation xml:lang="EN">
+				
+			</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                    <xs:maxLength value="20"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="EmailURI">
+                <xs:annotation>
+                    <xs:documentation xml:lang="EN">
+				
+			</xs:documentation>
+                </xs:annotation>
+                <xs:simpleContent>
+                    <xs:extension base="xs:anyURI">
+                        <xs:attribute name="schemeID">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:token">
+                                    <xs:maxLength value="60"/>
+                                    <xs:minLength value="1"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:simpleType name="GLOBAL_DateTime">
+                <xs:annotation>
+                    <xs:documentation xml:lang="EN">
+				
+			</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:dateTime">
+                    <xs:pattern value="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(.[0-9]{1,7})?Z"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="Indicator">
+                <xs:annotation>
+                    <xs:documentation xml:lang="EN">
+				
+			</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean"/>
+            </xs:simpleType>
+            <xs:complexType name="KeyMappingBulkReplicateRequestMessage">
+                <xs:sequence>
+                    <xs:element name="MessageHeader" type="BusinessDocumentMessageHeader"/>
+                    <xs:element maxOccurs="unbounded" name="KeyMappingReplicateRequestMessage" type="KeyMappingReplicateRequestMessage"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="KeyMappingReplicateRequestMessage">
+                <xs:sequence>
+                    <xs:element name="MessageHeader" type="BusinessDocumentMessageHeader"/>
+                    <xs:element name="MappingGroup" type="MappingGroup"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:simpleType name="KeyValue">
+                <xs:annotation>
+                    <xs:documentation xml:lang="EN">
+				
+			</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:token">
+                    <xs:maxLength value="120"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="LANGUAGEINDEPENDENT_LONG_Name">
+                <xs:annotation>
+                    <xs:documentation xml:lang="EN">
+				
+			</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                    <xs:maxLength value="80"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="LANGUAGEINDEPENDENT_MEDIUM_Name">
+                <xs:annotation>
+                    <xs:documentation xml:lang="EN">
+				
+			</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                    <xs:maxLength value="40"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="LanguageCode">
+                <xs:annotation>
+                    <xs:documentation xml:lang="EN">
+				
+			</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:language">
+                    <xs:maxLength value="9"/>
+                    <xs:minLength value="2"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="MEDIUM_Name">
+                <xs:annotation>
+                    <xs:documentation xml:lang="EN">
+				
+			</xs:documentation>
+                </xs:annotation>
+                <xs:simpleContent>
+                    <xs:extension base="MEDIUM_Name.Content">
+                        <xs:attribute name="languageCode" type="LanguageCode"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:simpleType name="MEDIUM_Name.Content">
+                <xs:restriction base="xs:string">
+                    <xs:maxLength value="40"/>
+                    <xs:minLength value="1"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="MappingGroup">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="Object" type="Object"/>
+                </xs:sequence>
+                <xs:attribute name="changeOrdinalNumber" type="OrdinalNumberValue_V1"/>
+                <xs:attribute name="reconciliationPeriodCounterValue" type="CounterValue"/>
+                <xs:attribute name="actionCode" type="ActionCode"/>
+                <xs:attribute name="objectListCompleteTransmissionIndicator" type="OPTIONAL_Indicator"/>
+            </xs:complexType>
+            <xs:simpleType name="OPTIONAL_Indicator">
+                <xs:annotation>
+                    <xs:documentation xml:lang="EN">
+				
+			</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean"/>
+            </xs:simpleType>
+            <xs:complexType name="Object">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="BusinessSystemID" type="BusinessSystemID"/>
+                    <xs:element minOccurs="0" name="TypeCode" type="Code"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="ObjectIdentifierSet" type="ObjectIdentifierSet"/>
+                </xs:sequence>
+                <xs:attribute name="actionCode" type="ActionCode"/>
+                <xs:attribute name="objectIdentifierSetListCompleteTransmissionIndicator" type="OPTIONAL_Indicator"/>
+            </xs:complexType>
+            <xs:complexType name="ObjectIdentifier">
+                <xs:sequence>
+                    <xs:element name="DefiningSchemeCode" type="DefiningSchemeCode"/>
+                    <xs:element name="KeyValue" type="KeyValue"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ObjectIdentifierSet">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="ObjectIdentifier" type="ObjectIdentifier"/>
+                </xs:sequence>
+                <xs:attribute name="actionCode" type="ActionCode"/>
+                <xs:attribute name="objectIdentifierListCompleteTransmissionIndicator" type="OPTIONAL_Indicator"/>
+            </xs:complexType>
+            <xs:simpleType name="OrdinalNumberValue_V1">
+                <xs:annotation>
+                    <xs:documentation xml:lang="EN">
+				
+			</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:token">
+                    <xs:maxLength value="20"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="PartyInternalID">
+                <xs:annotation>
+                    <xs:documentation xml:lang="EN">
+				
+			</xs:documentation>
+                </xs:annotation>
+                <xs:simpleContent>
+                    <xs:extension base="PartyInternalID.Content">
+                        <xs:attribute name="schemeID">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:token">
+                                    <xs:maxLength value="60"/>
+                                    <xs:minLength value="1"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="schemeAgencyID">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:token">
+                                    <xs:maxLength value="60"/>
+                                    <xs:minLength value="1"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:simpleType name="PartyInternalID.Content">
+                <xs:restriction base="xs:token">
+                    <xs:maxLength value="32"/>
+                    <xs:minLength value="1"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="PartyStandardID">
+                <xs:annotation>
+                    <xs:documentation xml:lang="EN">
+				
+			</xs:documentation>
+                </xs:annotation>
+                <xs:simpleContent>
+                    <xs:extension base="PartyStandardID.Content">
+                        <xs:attribute name="schemeAgencyID" use="required">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:token">
+                                    <xs:maxLength value="3"/>
+                                    <xs:minLength value="1"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:simpleType name="PartyStandardID.Content">
+                <xs:restriction base="xs:token">
+                    <xs:maxLength value="13"/>
+                    <xs:minLength value="1"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="PhoneNumber">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="AreaID" type="PhoneNumberAreaID"/>
+                    <xs:element minOccurs="0" name="SubscriberID" type="PhoneNumberSubscriberID"/>
+                    <xs:element minOccurs="0" name="ExtensionID" type="PhoneNumberExtensionID"/>
+                    <xs:element minOccurs="0" name="CountryCode" type="CountryCode"/>
+                    <xs:element minOccurs="0" name="CountryDiallingCode" type="CountryDiallingCode"/>
+                    <xs:element minOccurs="0" name="CountryName" type="MEDIUM_Name"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:simpleType name="PhoneNumberAreaID">
+                <xs:annotation>
+                    <xs:documentation xml:lang="EN">
+				
+			</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:token">
+                    <xs:maxLength value="10"/>
+                    <xs:minLength value="1"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="PhoneNumberExtensionID">
+                <xs:annotation>
+                    <xs:documentation xml:lang="EN">
+				
+			</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:token">
+                    <xs:maxLength value="10"/>
+                    <xs:minLength value="1"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="PhoneNumberSubscriberID">
+                <xs:annotation>
+                    <xs:documentation xml:lang="EN">
+				
+			</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:token">
+                    <xs:maxLength value="30"/>
+                    <xs:minLength value="1"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="UUID">
+                <xs:annotation>
+                    <xs:documentation xml:lang="EN">
+				
+			</xs:documentation>
+                </xs:annotation>
+                <xs:simpleContent>
+                    <xs:extension base="UUID.Content">
+                        <xs:attribute name="schemeID">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:token">
+                                    <xs:maxLength value="60"/>
+                                    <xs:minLength value="1"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="schemeAgencyID">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:token">
+                                    <xs:maxLength value="60"/>
+                                    <xs:minLength value="1"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:simpleType name="UUID.Content">
+                <xs:restriction base="xs:token">
+                    <xs:length value="36"/>
+                    <xs:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="KeyMappingBulkReplicateRequest">
+        <wsdl:part element="sch:KeyMappingBulkReplicateRequest" name="KeyMappingBulkReplicateRequest">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="KeyMappingBulkReplicateRequest_In">
+        <wsdl:operation name="KeyMappingBulkReplicate">
+            <wsdl:input message="tns:KeyMappingBulkReplicateRequest" name="KeyMappingBulkReplicateRequest">
+    </wsdl:input>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="KeyMappingBulkReplicateRequest_InSoap11" type="tns:KeyMappingBulkReplicateRequest_In">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="KeyMappingBulkReplicate">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="KeyMappingBulkReplicateRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="KeyMappingBulkReplicateRequest_InService">
+        <wsdl:port binding="tns:KeyMappingBulkReplicateRequest_InSoap11" name="KeyMappingBulkReplicateRequest_InSoap11">
+            <soap:address location="/bpservices"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

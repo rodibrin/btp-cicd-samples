@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://sap.com/xi/SAPGlobal20/Global" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://sap.com/xi/SAP_BS_FND/MDG/Global2" targetNamespace="http://sap.com/xi/SAP_BS_FND/MDG/Global2">
+    <wsdl:types>
+        <xs:schema xmlns:tns="http://sap.com/xi/SAPGlobal20/Global" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://sap.com/xi/SAPGlobal20/Global">
+            <xs:element name="BusinessPartnerSUITEBulkReplicateConfirmation" type="tns:BPSUITEBulkRplctConfMsg"/>
+            <xs:complexType name="BusinessDocumentMessageHeader">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="ID" type="tns:BusinessDocumentMessageID"/>
+                    <xs:element minOccurs="0" name="UUID" type="tns:UUID"/>
+                    <xs:element minOccurs="0" name="ReferenceID" type="tns:BusinessDocumentMessageID"/>
+                    <xs:element minOccurs="0" name="ReferenceUUID" type="tns:UUID"/>
+                    <xs:element minOccurs="0" name="CreationDateTime" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="TestDataIndicator" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="ReconciliationIndicator" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="SenderBusinessSystemID" type="xs:token"/>
+                    <xs:element minOccurs="0" name="RecipientBusinessSystemID" type="xs:token"/>
+                    <xs:element minOccurs="0" name="SenderParty" type="tns:BusinessDocumentMessageHeaderParty"/>
+                    <xs:element minOccurs="0" name="RecipientParty" type="tns:BusinessDocumentMessageHeaderParty"/>
+                    <xs:element minOccurs="0" name="BusinessScope" type="tns:BusinessScope"/>
+                </xs:sequence>
+                <xs:attribute name="BusinessDocumentObjectListCompleteTransmissionIndicator" type="xs:boolean"/>
+            </xs:complexType>
+            <xs:complexType name="BusinessDocumentMessageID">
+                <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                        <xs:attribute name="schemeID" type="xs:string"/>
+                        <xs:attribute name="schemeAgencyID" type="xs:string"/>
+                        <xs:attribute name="schemeAgencySchemeAgencyID" type="xs:string"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:complexType name="UUID">
+                <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                        <xs:attribute name="schemeID" type="xs:string"/>
+                        <xs:attribute name="schemeAgencyID" type="xs:string"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:complexType name="BusinessDocumentMessageHeaderParty">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="InternalID" type="tns:PartyInternalID"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="StandardID" type="tns:PartyStandardID"/>
+                    <xs:element minOccurs="0" name="ContactPerson" type="tns:BusinessDocumentMessageHeaderPartyContactPerson"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="PartyInternalID">
+                <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                        <xs:attribute name="schemeID" type="xs:string"/>
+                        <xs:attribute name="schemeAgencyID" type="xs:string"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:complexType name="PartyStandardID">
+                <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                        <xs:attribute name="schemeAgencyID" type="xs:string" use="required"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:complexType name="BusinessDocumentMessageHeaderPartyContactPerson">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="InternalID" type="tns:ContactPersonInternalID"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="OrganisationFormattedName" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="PersonFormattedName" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="PhoneNumber" type="tns:PhoneNumber"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="FaxNumber" type="tns:PhoneNumber"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="EmailURI" type="tns:EmailURI"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ContactPersonInternalID">
+                <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                        <xs:attribute name="schemeID" type="xs:string"/>
+                        <xs:attribute name="schemeAgencyID" type="xs:string"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:complexType name="PhoneNumber">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="AreaID" type="xs:token"/>
+                    <xs:element minOccurs="0" name="SubscriberID" type="xs:token"/>
+                    <xs:element minOccurs="0" name="ExtensionID" type="xs:token"/>
+                    <xs:element minOccurs="0" name="CountryCode" type="xs:token"/>
+                    <xs:element minOccurs="0" name="CountryDiallingCode" type="xs:token"/>
+                    <xs:element minOccurs="0" name="CountryName" type="tns:MEDIUM_Name"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="MEDIUM_Name">
+                <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                        <xs:attribute name="languageCode" type="xs:string"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:complexType name="EmailURI">
+                <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                        <xs:attribute name="schemeID" type="xs:string"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:complexType name="BusinessScope">
+                <xs:sequence>
+                    <xs:element name="TypeCode" type="tns:BusinessScopeTypeCode"/>
+                    <xs:element minOccurs="0" name="InstanceID" type="tns:BusinessScopeInstanceID"/>
+                    <xs:element minOccurs="0" name="ID" type="tns:BusinessScopeID"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="BusinessScopeTypeCode">
+                <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                        <xs:attribute name="listID" type="xs:string"/>
+                        <xs:attribute name="listVersionID" type="xs:string"/>
+                        <xs:attribute name="listAgencyID" type="xs:string"/>
+                        <xs:attribute name="listAgencySchemeID" type="xs:string"/>
+                        <xs:attribute name="listAgencySchemeAgencyID" type="xs:string"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:complexType name="BusinessScopeInstanceID">
+                <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                        <xs:attribute name="schemeID" type="xs:string"/>
+                        <xs:attribute name="schemeAgencyID" type="xs:string"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:complexType name="BusinessScopeID">
+                <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                        <xs:attribute name="schemeID" type="xs:string"/>
+                        <xs:attribute name="schemeAgencyID" type="xs:string"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:complexType name="BPSUITERplctConfMsg">
+                <xs:sequence>
+                    <xs:element name="MessageHeader" type="tns:BusinessDocumentMessageHeader"/>
+                    <xs:element name="BusinessPartner" type="tns:BPSUITERplctConfBP"/>
+                    <xs:element minOccurs="0" name="Log" type="tns:Log"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="BPSUITERplctConfBP">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="UUID" type="tns:UUID"/>
+                    <xs:element minOccurs="0" name="InternalID" type="xs:token"/>
+                    <xs:element minOccurs="0" name="ReceiverUUID" type="tns:UUID"/>
+                    <xs:element minOccurs="0" name="ReceiverInternalID" type="xs:token"/>
+                    <xs:element minOccurs="0" name="ExternalID" type="tns:NOCONVERSION_ObjectID"/>
+                    <xs:element minOccurs="0" name="Customer" type="tns:BPSUITERplctConfCust"/>
+                    <xs:element minOccurs="0" name="Supplier" type="tns:BPSUITERplctConfSuplr"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="MultipleAssignment" type="tns:BPSUITERplctConfMltpAs"/>
+                </xs:sequence>
+                <xs:attribute name="multipleAssignmentListCompleteTransmissionIndicator" type="xs:boolean"/>
+            </xs:complexType>
+            <xs:complexType name="NOCONVERSION_ObjectID">
+                <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                        <xs:attribute name="schemeID" type="xs:string"/>
+                        <xs:attribute name="schemeVersionID" type="xs:string"/>
+                        <xs:attribute name="schemeAgencyID" type="xs:string"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:complexType name="BPSUITERplctConfCust">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="InternalID" type="xs:token"/>
+                    <xs:element minOccurs="0" name="ReceiverInternalID" type="xs:token"/>
+                    <xs:element minOccurs="0" name="OldReceiverInternalID" type="xs:token"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="BPSUITERplctConfSuplr">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="InternalID" type="xs:token"/>
+                    <xs:element minOccurs="0" name="ReceiverInternalID" type="xs:token"/>
+                    <xs:element minOccurs="0" name="OldReceiverInternalID" type="xs:token"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="BPSUITERplctConfMltpAs">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="Customer" type="tns:BPSUITERplctConfCust"/>
+                    <xs:element minOccurs="0" name="Supplier" type="tns:BPSUITERplctConfSuplr"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Log">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="BusinessDocumentProcessingResultCode" type="xs:token"/>
+                    <xs:element minOccurs="0" name="MaximumLogItemSeverityCode" type="xs:token"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="Item" type="tns:LogItem"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="LogItem">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="TypeID" type="xs:token"/>
+                    <xs:element minOccurs="0" name="CategoryCode" type="tns:LogItemCategoryCode"/>
+                    <xs:element minOccurs="0" name="SeverityCode" type="xs:token"/>
+                    <xs:element minOccurs="0" name="ReferenceObjectNodeSenderTechnicalID" type="xs:token"/>
+                    <xs:element minOccurs="0" name="ReferenceMessageElementName" type="xs:string"/>
+                    <xs:element name="Note" type="xs:string"/>
+                    <xs:element minOccurs="0" name="NoteTemplateText" type="xs:string"/>
+                    <xs:element minOccurs="0" name="LogItemNotePlaceholderSubstitutionList" type="tns:LogItemNotePlaceholderSubstitutionList"/>
+                    <xs:element minOccurs="0" name="WebURI" type="xs:anyURI"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="LogItemCategoryCode">
+                <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                        <xs:attribute name="listID" type="xs:string"/>
+                        <xs:attribute name="listVersionID" type="xs:string"/>
+                        <xs:attribute name="listAgencyID" type="xs:string"/>
+                        <xs:attribute name="listAgencySchemeID" type="xs:string"/>
+                        <xs:attribute name="listAgencySchemeAgencyID" type="xs:string"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:complexType name="LogItemNotePlaceholderSubstitutionList">
+                <xs:sequence>
+                    <xs:element name="FirstPlaceholderID" type="xs:token"/>
+                    <xs:element minOccurs="0" name="SecondPlaceholderID" type="xs:token"/>
+                    <xs:element minOccurs="0" name="ThirdPlaceholderID" type="xs:token"/>
+                    <xs:element minOccurs="0" name="FourthPlaceholderID" type="xs:token"/>
+                    <xs:element name="FirstPlaceholderSubstitutionText" type="xs:string"/>
+                    <xs:element minOccurs="0" name="SecondPlaceholderSubstitutionText" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ThirdPlaceholderSubstitutionText" type="xs:string"/>
+                    <xs:element minOccurs="0" name="FourthPlaceholderSubstitutionText" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="BPSUITEBulkRplctConfMsg">
+                <xs:sequence>
+                    <xs:element name="MessageHeader" type="tns:BusinessDocumentMessageHeader"/>
+                    <xs:element maxOccurs="unbounded" name="BusinessPartnerSUITEReplicateConfirmationMessage" type="tns:BPSUITERplctConfMsg"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="BusinessPartnerSUITEBulkReplicateConfirmation">
+        <wsdl:part element="sch:BusinessPartnerSUITEBulkReplicateConfirmation" name="BusinessPartnerSUITEBulkReplicateConfirmation">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="BusinessPartnerSUITEBulkReplicateConfirmation_In">
+        <wsdl:operation name="BusinessPartnerSUITEBulkReplicateConfirm">
+            <wsdl:input message="tns:BusinessPartnerSUITEBulkReplicateConfirmation" name="BusinessPartnerSUITEBulkReplicateConfirmation">
+    </wsdl:input>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="BusinessPartnerSUITEBulkReplicateConfirmation_InSoap11" type="tns:BusinessPartnerSUITEBulkReplicateConfirmation_In">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="BusinessPartnerSUITEBulkReplicateConfirm">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="BusinessPartnerSUITEBulkReplicateConfirmation">
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="BusinessPartnerSUITEBulkReplicateConfirmation_InService">
+        <wsdl:port binding="tns:BusinessPartnerSUITEBulkReplicateConfirmation_InSoap11" name="BusinessPartnerSUITEBulkReplicateConfirmation_InSoap11">
+            <soap:address location="/bpservices"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

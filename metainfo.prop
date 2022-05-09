@@ -1,0 +1,5 @@
+#Store metainfo properties
+#Mon May 09 14:02:43 UTC 2022
+description=Receive an acknowledgement for successful customer replication from SAP Master Data Integration
+source=SAPCloudPlatformMasterDataIntegration
+target=SAPCommerceCloud
