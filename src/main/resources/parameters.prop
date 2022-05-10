@@ -1,0 +1,11 @@
+#Thu Feb 04 04:51:16 UTC 2021
+enableLogging=true
+Authentication\ Type=Basic
+Persistence\ Hook=sapCpiMDMCustomerPersistenceHook
+iflow\ Address=/mdm/commerce/BP_Confirmation
+B2C\ Confirmation\ URL=https\://<commerce-url>/odata2webservices/InboundB2CMDMCustomerConfirmation
+Leading\ Business\ System\ Id=&lt;If Leading System Available Set the logical Name of the Leading system Configured in MDM&gt;
+Leading\ System\ Available=false
+Credential\ Name=<client-credentials>
+Proxy\ Type=default
+Cloud\ Connector\ Location\ ID=
