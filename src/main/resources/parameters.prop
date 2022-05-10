@@ -1,11 +1,11 @@
 #
-#Mon May 09 14:02:44 UTC 2022
+#Tue May 10 07:59:29 UTC 2022
 enableLogging=true
 Authentication\ Type=Basic
 Persistence\ Hook=sapCpiMDMCustomerPersistenceHook
 iflow\ Address=/mdm/commerce/BP_Confirmation
 B2C\ Confirmation\ URL=https\://9821a515trial.it-cpitrial06-rt.cfapps.us10-001.hana.ondemand.com/odata2webservices/InboundB2CMDMCustomerConfirmation
-Leading\ Business\ System\ Id=&lt;If Leading System Available Set the logical Name of the Leading system Configured in MDM&gt;
+Leading\ Business\ System\ Id=
 Leading\ System\ Available=false
 Credential\ Name=sb-d6fc80a0-9844-448e-9b9f-6b7db3442da5\!b75588|it\!b55215
 Proxy\ Type=default

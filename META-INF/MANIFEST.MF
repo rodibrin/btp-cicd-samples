@@ -1,8 +1,6 @@
 Manifest-Version: 1.0
-Bundle-SymbolicName: Receive_B2C_Customer_Replication_Confirmation_in_
- SAP_Commerce_Cloud; singleton:=true
-Origin-Bundle-SymbolicName: Receive_B2C_Customer_Replication_Confirmat
- ion_in_SAP_Commerce_Cloud
+Bundle-SymbolicName: iFlowNotifyB2CToSapCommerce; singleton:=true
+Origin-Bundle-SymbolicName: iFlowNotifyB2CToSapCommerce
 Bundle-ManifestVersion: 2
 Origin-Bundle-Version: 1.0.4
 Import-Package: com.sap.esb.application.services.cxf.interceptor,com.s
@@ -31,10 +29,10 @@ Import-Package: com.sap.esb.application.services.cxf.interceptor,com.s
  ,com.sap.esb.camel.endpoint.configurator.api,com.sap.esb.camel.jdbc.i
  dempotency.reorg,javax.sql,org.apache.camel.processor.idempotent.jdbc
  ,org.osgi.service.blueprint;version="[1.0.0,2.0.0)"
-Origin-Bundle-Name: Notify B2C Customer Replication to SAP Commerce Cl
- oud
+Origin-Bundle-Name: IFlow Notify B2C To Sap Commerce from predefined A
+ rtifact
 SAP-RuntimeProfile: iflmap
-Bundle-Name: Notify B2C Customer Replication to SAP Commerce Cloud
+Bundle-Name: IFlow Notify B2C To Sap Commerce from predefined Artifact
 Bundle-Version: 1.0.4
 SAP-NodeType: IFLMAP
 Origin-ModifiedDate: 1642738676396
