@@ -1,0 +1,19 @@
+---
+general:
+  cpiApiServiceKeyCredentialsId: "servicekey-pi-runtime-api"
+  integrationFlowId: "iFlowNotifyB2CToSapCommerce"
+stages:
+  uploadStage:
+    enabled: true
+  deployStage:
+    enabled: true
+  integrationTestStage:
+    enabled: false
+steps:
+  integrationArtifactUpload:
+    packageId: "BtpCICDSamples"
+    integrationFlowName: "IFlow Notify B2C To Sap Commerce from predefined Artifact"
+  integrationArtifactTriggerIntegrationTest:
+    contentType: ""
+    messageBodyPath: ""
+    integrationFlowServiceKeyCredentialsId: "servicekey-pi-runtime-flow"

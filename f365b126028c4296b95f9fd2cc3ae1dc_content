@@ -1,0 +1,72 @@
+25/06/2021
+- Updated package name, package description and integration flow description according to product guidelines.
+
+10/06/2021
+- Externalized MDM System parameters to provide compatibility for MDM and MDI in the integration flow "Replicate B2C Customer from SAP Customer Data Cloud"
+
+21/01/2021
+- Fixed bugs for Telephone number, Mobile Number, Fax number
+- Added BP GroupCode for S/4 HANA 
+- SAP Cloud Platform Master Data for business partners changed to SAP Master Data service for business partners
+V1.2.3
+iflow changed:
+  a. Replicate-B2C-Customer-from-SAP-Commerce-Cloud
+  b. Replicate B2C Customer from SAP Customer Data Cloud
+  c. Receive B2C Customer Updates in SAP Commerce Cloud
+
+
+04/11/2020
+V1.2.2
+- Added extensibility to the below iflows
+ a. Receive B2B Contact Updates in SAP Customer Data Cloud
+ b. Replicate B2B Contact from SAP Customer Data Cloud
+
+08/09/2020
+V1.2.1
+- Fixed bugs for Telephone number, Mobile Number, Fax number 
+iflow changed:
+ a. Receive B2C Customer Updates in SAP Commerce Cloud
+ b. Replicate-B2C-Customer-from-SAP-Commerce-Cloud
+
+
+05/03/2020
+V1.2.0
+-Added B2B related flows to handle integration between SAP Customer Data Cloud and SAP Cloud Platform Master Data for Business Partners
+
+iflow added:
+	a. Receive B2B Contact Updates in SAP Customer Data Cloud
+	b. Replicate B2B Contact from SAP Customer Data Cloud
+
+17/01/2020
+V1.1.2
+-keystore alias is renamed to keypair alias
+
+iflow changed:
+	a. Replicate B2C Customer from SAP Customer Data Cloud
+	b. Receive B2C Customer Updates in SAP Customer Data Cloud
+	
+16/01/2020
+V1.1.1
+-keystore alias is made configurable 
+
+iflow changed:
+	a. Replicate B2C Customer from SAP Customer Data Cloud
+	b. Receive B2C Customer Updates in SAP Customer Data Cloud
+	
+	
+09/01/2020
+V1.1.0
+-Update Customer data cloud authentication from app/user key to JWT 
+-resticted the available events supported in Customer data cloud to accountCreated, accountRegistered, and accountUpdated
+
+iflow changed:
+	a. Replicate B2C Customer from SAP Customer Data Cloud
+	b. Receive B2C Customer Updates in SAP Customer Data Cloud
+
+10/12/19
+V1.0.1
+-Update iflow to save security credential in SCP Security Material 
+
+02/12/19:
+V1.0.0
+-Initial release of Customer Data Cloud and Master Data for Business partner with adaptations in Commerce SCPI package
